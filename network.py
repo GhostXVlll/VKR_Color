@@ -1,10 +1,11 @@
 import numpy as np
 import tensorflow as tf
-from keras.layers import Conv2D, UpSampling2D, InputLayer
 from keras.models import Sequential, load_model
-from skimage.color import lab2rgb, rgb2lab
+from keras.src.layers import Conv2D, InputLayer
+#from skimage.color import lab2rgb, rgb2lab
 import os.path
-from tensorflow.keras.preprocessing.image import img_to_array, load_img
+
+#from tensorflow.keras.preprocessing.image import img_to_array, load_img
 from PIL import Image, ImageOps
 
 # Defaults
@@ -46,6 +47,7 @@ def create_model(modelName):
     model.add(Conv2D(512, (3, 3), activation='relu', padding='same'))
     model.add(Conv2D(256, (3, 3), activation='relu', padding='same'))
     model.add(Conv2D(128, (3, 3), activation='relu', padding='same'))
+    from tensorflow.python.keras.layers import UpSampling2D
     model.add(UpSampling2D((2, 2,)))
     model.add(Conv2D(64, (3, 3), activation='relu', padding='same'))
     model.add(UpSampling2D((2, 2,)))
